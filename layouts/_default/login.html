@@ -1,0 +1,81 @@
+{{ define "head" }}
+<script>
+  // Define script version
+  const scriptVersion = "1.0.0";
+
+  // Plain username and password list
+  const users = [
+    { username: "admin", password: "admin123" },
+    { username: "john", password: "password123" },
+    { username: "aishik", password: "itc2024" }
+  ];
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const loginForm = document.getElementById("loginForm");
+    const errorMessage = document.getElementById("errorMessage");
+
+    // Check script version and enforce logout if it doesn't match
+    const storedVersion = localStorage.getItem("scriptVersion");
+    if (storedVersion !== scriptVersion) {
+      localStorage.clear(); // Clear all session data
+      localStorage.setItem("scriptVersion", scriptVersion); // Store the new version
+    }
+
+    // Handle login form submission
+    loginForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const enteredUsername = document.getElementById("floatingInput").value;
+      const enteredPassword = document.getElementById("floatingPassword").value;
+
+      // Validate credentials
+      const user = users.find(
+        (u) => u.username === enteredUsername && u.password === enteredPassword
+      );
+
+      if (user) {
+        // Successful login
+        localStorage.setItem("username", enteredUsername); // Store username
+        localStorage.setItem("scriptVersion", scriptVersion); // Store script version
+        window.location.href = "/"; // Redirect to homepage
+      } else {
+        // Show error message
+        errorMessage.textContent = "Invalid username or password.";
+        errorMessage.style.display = "block";
+      }
+    });
+  });
+</script>
+{{ end }}
+{{ define "main" }}
+<div class="container col-xl-10 col-xxl-8 px-4 py-5">
+  <div class="row align-items-center g-lg-5 py-5">
+    <div class="col-lg-7 text-center text-lg-start">
+      <h1 class="display-4 fw-bold lh-1 mb-3">IT Center Login</h1>
+      <p class="col-lg-10 fs-4">Welcome to IT Center. Please log in to continue.</p>
+    </div>
+    <div class="col-md-10 mx-auto col-lg-5">
+      <form class="p-4 p-md-5" id="loginForm">
+        <div class="alert alert-danger" role="alert" id="errorMessage" style="display: none;">
+          <i class="bi bi-exclamation-triangle-fill"></i> Invalid username or password.
+        </div>
+
+        <!-- Username Input -->
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="floatingInput" placeholder="Username" required>
+          <label for="floatingInput">Username</label>
+        </div>
+
+        <!-- Password Input -->
+        <div class="form-floating mb-3">
+          <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
+          <label for="floatingPassword">Password</label>
+        </div>
+
+        <!-- Login Button -->
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
+      </form>
+    </div>
+  </div>
+</div>
+{{ end }}

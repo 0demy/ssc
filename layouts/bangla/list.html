@@ -1,0 +1,66 @@
+{{ define "main" }}
+<div class="py-2 mb-4" id="ListPageTitle">
+  <div class="container">
+    <h1 class="pt-3">{{.Title }} </h1>
+    <p class=" s-5">{{.Summary | truncate 400}}</p>
+    <div class="mb-5"> <a href="#ListPageContent" class="btn btn-primary btn-lg px-4">সম্পূর্ণ পড়ুন</a> </div>
+    <hr class="col-3 col-md-2 mb-5">
+    <div class="row g-5">
+      <div class="col-md-6">
+        <h2 class="text-body-emphasis">এই পাঠে..</h2>
+        <ul class="list-unstyled ps-0">
+          <li> <a class="mb-1" href="#পঠ-পরচত">পাঠ পরিচিতি</a> </li>
+          <li> <a class="mb-1" href="author">লেখক পরিচিতি</a> </li>
+          <li> <a class="mb-1" href="#শবদরথ-ও-টক">শব্দার্থ ও টীকা</a> </li>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <h2 class="text-body-emphasis">অনুশীলন</h2>
+        <ul class="list-unstyled ps-0">
+          <li> <a class="mb-1" href="/exercise">পাঠ্যবইয়ের অনুশীলনী</a> </li>
+          <li> <a class="mb-1" href="/cq">সৃজনশীল </a> </li>
+          <li> <a class="mb-1" href="/mcq">বহুনির্বাচনি</a> </li>
+        </ul>
+      </div>
+
+    </div>
+    {{/* <div class="row align-items-md-stretch">
+      <div class="col-md-3">
+        <div class="h-100 p-2 text-bg-dark">
+          <h2>মূল গল্প</h2>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="h-100 p-2 bg-body-tertiary border">
+          <h2>সৃজনশীল</h2>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="h-100 p-2 bg-body-tertiary border">
+          <h2>বহুনির্বাচনি</h2>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="h-100 p-2 bg-body-tertiary border">
+          <h2>সংক্ষিপ্ত প্রশ্ন</h2>
+        </div>
+      </div>
+    </div> */}}
+    <hr>
+  </div>
+</div>
+
+<div class="container my-4" id="ListPageContent">
+  <div class="p-2">{{ .Content }}</div>
+  {{/* <h2 class="text-center py-3">..বিস্তারিত তথ্য..</h2> */}}
+  <div id="Index">
+    {{ range $index, $section := .Pages }}
+    <a class="nav-link d-flex border rounded shadow-lg p-3 my-2" href="{{.Permalink}}">
+      <span class="text-bg-dark fs-3 p-1 px-3">{{ printf "%02d" (add $index 1) }}</span>
+      <h3 class="p-1 ps-3">{{.Title}}</h3>
+      {{/* <p class="pt-2">{{.Summary | truncate 200}}</p> */}}
+    </a>
+    {{ end }}
+  </div>
+</div>
+{{ end }}

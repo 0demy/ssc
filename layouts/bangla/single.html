@@ -1,0 +1,36 @@
+{{ define "main" }}
+
+<article id="article" class="container" itemscope itemtype="https://schema.org/Article">
+  <div id="articleGrid" class="row g-3 my-2">
+    {{ if ne .Params.view "full" }}
+    <div id="articleContent" class="col-lg-8">
+      {{ partial "partials/articleContent.html" . }}
+    </div>
+    <div id="articleSidebar" class="col-lg-4">
+      <div class="position-sticky" style="top: 2rem;">
+
+        {{ partial "widget/sameSectionPosts.html" . }}
+      </div>
+    </div>
+    {{ else}}
+    {{ partial "partials/articleContent.html" . }}
+    {{ partial "widget/sameSectionPosts.html" . }}
+    {{ end }}
+  </div>
+</article>
+{{ end }}
+
+{{ define "partials/articleContent.html" }}
+<div id="articleSchema">
+  <h1 id="articleTitle" class="border-bottom pb-2 fw-bold" itemprop="headline">{{ .Title }}</h1>
+  <p class="fw-bold">
+    {{ range $index, $title := .Params.alts }}
+    {{with $index }} • {{ end }}{{ . }}
+    {{ end }}
+  </p>
+  {{ partial "widget/tocNormal.html" . }}
+  {{/* <div id="articleNavigation" class="my-3">{{ partial "local/navigation.html" . }}</div> */}}
+  <hr>
+</div>
+<div id="articleBody" class="mt-4" itemprop="articleBody">{{.Content}}</div>
+{{ end }}
