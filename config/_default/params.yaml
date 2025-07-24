@@ -13,7 +13,7 @@ activateColorModeToogler: true # Activates the dark/light color mode toggler
 activateGlobalMenu: true # Activates the Global Menu if required
 siteWideDynamicTitle: false
 useSubNavBar: true
-adminLogin: true
+adminLogin: false
 usePrintPageFunction: true
 
 # Packeges/Dependencies 

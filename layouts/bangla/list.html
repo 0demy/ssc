@@ -1,25 +1,26 @@
 {{ define "main" }}
 <div class="py-2 mb-4" id="ListPageTitle">
   <div class="container">
-    <h1 class="pt-3">{{.Title }} </h1>
+    {{ partial "meta/br.html" . }}
+    <h1 class="py-2">{{.Title }} </h1>
     <p class=" s-5">{{.Summary | truncate 400}}</p>
-    <div class="mb-5"> <a href="#ListPageContent" class="btn btn-primary btn-lg px-4">সম্পূর্ণ পড়ুন</a> </div>
+    <div class="mb-5"> <a href="#ListPageContent" class="btn btn-primary px-4">সম্পূর্ণ পড়ুন</a> </div>
     <hr class="col-3 col-md-2 mb-5">
     <div class="row g-5">
-      <div class="col-md-6">
+      <div class="col-6">
         <h2 class="text-body-emphasis">এই পাঠে..</h2>
         <ul class="list-unstyled ps-0">
           <li> <a class="mb-1" href="#পঠ-পরচত">পাঠ পরিচিতি</a> </li>
-          <li> <a class="mb-1" href="author">লেখক পরিচিতি</a> </li>
+          <li> <a class="mb-1" href="#লখক-পরচত">লেখক পরিচিতি</a> </li>
           <li> <a class="mb-1" href="#শবদরথ-ও-টক">শব্দার্থ ও টীকা</a> </li>
         </ul>
       </div>
-      <div class="col-md-6">
+      <div class="col-6">
         <h2 class="text-body-emphasis">অনুশীলন</h2>
         <ul class="list-unstyled ps-0">
-          <li> <a class="mb-1" href="/exercise">পাঠ্যবইয়ের অনুশীলনী</a> </li>
-          <li> <a class="mb-1" href="/cq">সৃজনশীল </a> </li>
-          <li> <a class="mb-1" href="/mcq">বহুনির্বাচনি</a> </li>
+          <li> <a class="mb-1" href="exercise">পাঠ্যবইয়ের অনুশীলনী</a> </li>
+          <li> <a class="mb-1" href="cq">সৃজনশীল </a> </li>
+          <li> <a class="mb-1" href="mcq">বহুনির্বাচনি</a> </li>
         </ul>
       </div>
 
@@ -46,11 +47,11 @@
         </div>
       </div>
     </div> */}}
-    <hr>
+
   </div>
 </div>
-
-<div class="container my-4" id="ListPageContent">
+<hr>
+<div class="container my-4 text-justify" id="ListPageContent">
   <div class="p-2">{{ .Content }}</div>
   {{/* <h2 class="text-center py-3">..বিস্তারিত তথ্য..</h2> */}}
   <div id="Index">
